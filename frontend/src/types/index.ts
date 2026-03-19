@@ -9,7 +9,7 @@ export interface Venue {
 
 export interface ClockIn {
   id: string;
-  learner_id: string;  // add this
+  learner_id: string;
   clocked_in_at: string;
   latitude: number;
   longitude: number;
