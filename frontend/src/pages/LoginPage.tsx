@@ -50,6 +50,6 @@ const styles: Record<string, React.CSSProperties> = {
   title: { margin: '0 0 0.5rem', fontSize: '1.5rem', fontWeight: 500, textAlign: 'center' },
   subtitle: { margin: '0 0 1.5rem', color: '#666', textAlign: 'center' },
   input: { display: 'block', width: '100%', padding: '0.75rem', marginBottom: '1rem', border: '1px solid #ddd', borderRadius: '5px', fontSize: '1rem', boxSizing: 'border-box' },
-  button: { width: '100%', padding: '0.75rem', backgroundColor: '#2563eb', color: 'white', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer' },
+  button: { width: '100%', padding: '0.75rem', backgroundColor: '#3b72ea', color: 'white', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer' },
   error: { color: '#dc2626', marginBottom: '1rem', fontSize: '0.8rem', textAlign: 'center'},
 };

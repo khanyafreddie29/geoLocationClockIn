@@ -51,7 +51,7 @@ export default function LearnerPage() {
     } catch (err: unknown) {
       const apiErr = err as ApiError;
       const message = apiErr.response?.data?.error || 'Failed to clock in';
-      setStatus({ type: 'error', message: `❌ ${message}` });
+      setStatus({ type: 'error', message: `${message}` });
     }
 
     setLoading(false);
@@ -84,7 +84,7 @@ export default function LearnerPage() {
           {geoError && <p style={styles.error}>⚠️ {geoError}</p>}
           {coords && (
             <p style={styles.muted}>
-              📍 Location detected: {coords.latitude.toFixed(5)}, {coords.longitude.toFixed(5)}
+              Location detected: {coords.latitude.toFixed(5)}, {coords.longitude.toFixed(5)}
             </p>
           )}
         </div>
@@ -124,15 +124,15 @@ const styles: Record<string, React.CSSProperties> = {
   card: { backgroundColor: 'white', padding: '2rem', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', width: '100%', maxWidth: '440px' },
   header: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' },
   title: { margin: 0, fontSize: '1.8rem', fontWeight: 700 },
-  signOut: { background: 'none', border: '2px solid #ddd', borderRadius: '5px', padding: '0.4rem 0.8rem', cursor: 'pointer', color: '#666' },
+  signOut: { background: 'none', border: '1px solid #ddd', borderRadius: '5px', padding: '0.4rem 0.8rem', cursor: 'pointer', color: '#666' },
   label: { display: 'block', marginBottom: '0.5rem', fontWeight: 600 },
-  select: { width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '4px', fontSize: '1rem', marginBottom: '1rem', boxSizing: 'border-box' },
+  select: { width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '5px', fontSize: '1rem', marginBottom: '1rem', boxSizing: 'border-box' },
   locationBox: { marginBottom: '1rem', minHeight: '1.5rem' },
   muted: { margin: 0, color: '#666', fontSize: '0.9rem' },
   error: { margin: 0, color: '#dc2626', fontSize: '0.7rem' },
   statusBox: { padding: '0.75rem 1rem', borderRadius: '4px', marginBottom: '1rem' },
   statusText: { margin: 0, fontWeight: 500 },
-  button: { width: '100%', padding: '0.75rem', backgroundColor: '#2563eb', color: 'white', border: 'none', borderRadius: '4px', fontSize: '1rem', cursor: 'pointer' },
+  button: { width: '100%', padding: '0.75rem', backgroundColor: '#3b72ea', color: 'white', border: 'none', borderRadius: '4px', fontSize: '1rem', cursor: 'pointer' },
   historySection: { marginTop: '2rem', borderTop: '1px solid #e5e7eb', paddingTop: '1.5rem' },
   historyTitle: { margin: '0 0 1rem', fontSize: '1.1rem', fontWeight: 600, color: '#374151' },
   historyItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.6rem 0', borderBottom: '1px solid #f3f4f6' },

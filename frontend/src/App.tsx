@@ -37,14 +37,12 @@ export default function App() {
     return () => subscription.unsubscribe();
   }, [fetchProfile]);
 
-  if (loading) return (
+  if (!session) return <LoginPage />;
+  if (loading || !profile) return (
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <p>Loading...</p>
     </div>
   );
-
-  if (!session) return <LoginPage />;
-  if (!profile) return null;
   if (profile?.role === 'facilitator') return <FacilitatorPage />;
   return <LearnerPage />;
 }

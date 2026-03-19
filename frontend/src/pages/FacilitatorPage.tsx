@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { supabase } from '../supabase';
 import { getTodaysClockIns } from '../api';
 import type { ClockIn } from '../types';
@@ -7,10 +7,24 @@ export default function FacilitatorPage() {
   const [clockIns, setClockIns] = useState<ClockIn[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const fetchClockIns = useCallback(async () => {
+    setLoading(true);
+    try {
+      const data = await getTodaysClockIns();
+      setClockIns(data);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   useEffect(() => {
+    let cancelled = false;
+
     getTodaysClockIns()
-      .then(setClockIns)
-      .finally(() => setLoading(false));
+      .then(data => { if (!cancelled) setClockIns(data); })
+      .finally(() => { if (!cancelled) setLoading(false); });
+
+    return () => { cancelled = true; };
   }, []);
 
   const formatTime = (iso: string) =>
@@ -54,7 +68,7 @@ export default function FacilitatorPage() {
           </table>
         )}
 
-        <button style={styles.refresh} onClick={() => getTodaysClockIns().then(setClockIns)}>
+        <button style={styles.refresh} onClick={fetchClockIns}>
           ↻ Refresh
         </button>
       </div>
@@ -68,11 +82,11 @@ const styles: Record<string, React.CSSProperties> = {
   header: { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' },
   title: { margin: '0 0 0.25rem', fontSize: '1.8rem', fontWeight: 700 },
   subtitle: { margin: 0, color: '#666' },
-  signOut: { background: 'none', border: '1px solid #ddd', borderRadius: '4px', padding: '0.4rem 0.8rem', cursor: 'pointer', color: '#666' },
+  signOut: { background: 'none', border: '1px solid #ddd', borderRadius: '5px', padding: '0.4rem 0.8rem', cursor: 'pointer', color: '#666' },
   muted: { color: '#666', textAlign: 'center', padding: '2rem 0' },
   table: { width: '100%', borderCollapse: 'collapse', marginBottom: '1rem' },
   th: { textAlign: 'left', padding: '0.75rem', borderBottom: '2px solid #e5e7eb', fontWeight: 600, color: '#374151' },
   td: { padding: '0.75rem', borderBottom: '1px solid #f3f4f6', color: '#374151' },
   tr: { transition: 'background 0.15s' },
-  refresh: { background: 'none', border: '1px solid #ddd', borderRadius: '4px', padding: '0.5rem 1rem', cursor: 'pointer', color: '#2563eb' },
+  refresh: { background: 'none', border: '2px solid #ddd', borderRadius: '5px', padding: '0.5rem 1rem', cursor: 'pointer', color: '#2563eb' },
 };
