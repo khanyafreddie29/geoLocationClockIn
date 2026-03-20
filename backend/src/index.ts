@@ -6,30 +6,22 @@ import clockInRoutes from './routes/clockIns';
 
 dotenv.config();
 
-const app = express()
+const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-     origin: [
-        'http://localhost:5173',
-        'https://geo-location-clock-in.vercel.app/'
-    ]
+  origin: '*'
 }));
 app.use(express.json());
 
-// app health check
+// Health check
 app.get('/health', (_, res) => {
-    res.json({status: 'ok'});
+  res.json({ status: 'ok' });
 });
 
-// app routes
+// Routes
 app.use('/api/venues', venueRoutes);
 app.use('/api/clock-ins', clockInRoutes);
-
-// app.listen(PORT, () => {
-//     console.log(`Server is running on ${PORT}`)
-// });
-
 
 // For local development
 if (process.env.NODE_ENV !== 'production') {
