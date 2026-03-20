@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://geo-location-clock-in.vercel.app/'
+    'https://geo-location-clock-in.vercel.app'
   ]
 }));
 app.use(express.json());
