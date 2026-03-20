@@ -4,8 +4,8 @@ A web application that allows learners to clock in to a venue using geolocation.
 
 ## Live Demo
 
-- **Frontend:** (add Vercel URL after deployment)
-- **Backend:** (add Railway URL after deployment)
+- **Frontend:** `https://geo-location-clock-in.vercel.app/`
+- **Backend:** `https://geolocationclockin.up.railway.app/`
 
 ## Tech Stack
 
@@ -173,7 +173,7 @@ Create a `.env` file in the `frontend/` folder:
 ```
 VITE_SUPABASE_URL=https://your-project-id.supabase.co
 VITE_SUPABASE_ANON_KEY=your-anon-key
-VITE_API_URL=http://localhost:3000
+VITE_API_URL=//geolocationclockin.up.railway.app
 ```
 
 Run the dev server:
