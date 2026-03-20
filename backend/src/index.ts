@@ -26,6 +26,17 @@ app.get('/health', (_, res) => {
 app.use('/api/venues', venueRoutes);
 app.use('/api/clock-ins', clockInRoutes);
 
-app.listen(PORT, () => {
-    console.log(`Server is running on ${PORT}`)
-});
+// app.listen(PORT, () => {
+//     console.log(`Server is running on ${PORT}`)
+// });
+
+
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+// For Vercel serverless
+export default app;
