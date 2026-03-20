@@ -9,7 +9,12 @@ dotenv.config();
 const app = express()
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({
+     origin: [
+        'http://localhost:5173',
+        'https://geo-location-clock-in.vercel.app/'
+    ]
+}));
 app.use(express.json());
 
 // app health check
